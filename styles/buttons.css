@@ -1,0 +1,48 @@
+.exers {
+    
+    position: relative;
+    margin: 100px;
+    padding: 20px 80px;
+    background: transparent;
+    border: 5px solid black;
+    font-family: sans-serif;
+    color: white;
+    cursor: pointer;
+    top: 5%;
+    border-radius: 5px;
+
+}
+
+.exers::after {
+    position: absolute;
+    content: " ";
+    width: 20px;
+    height: 5px;
+    background-color: #8bc34a;
+    top: -5px;
+    left: 0px;
+    transition: .4s linear;
+}
+
+.exers:hover {
+    box-shadow: 0px 4px 18px 8px rgb(100, 10, 140);
+}
+
+.exers:hover::after {
+    left: 152px;
+}
+
+.exers::before {
+    position: absolute;
+    content: " ";
+    width: 20px;
+    height: 5px;
+    background-color: #8bc34a;
+    bottom: -5px;
+    right: 0px;
+    transition: .4s linear;
+}
+
+.exers:hover::before {
+    right: 152px;
+}

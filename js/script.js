@@ -1,18 +1,20 @@
-let accountName = document.querySelector(".name-input").value;
-let role = document.querySelector(".status-input").value;
+let accountName = document.querySelector(".name-input");
+let role = document.querySelector(".status-input");
+
 let loginButton = document.querySelector(".login");
-let users = [];
-let admins = [];
+let users = ["Slava"];
+let admins = ["Petro"];
 
 class User {
     constructor(name, role) {
-        if (this.role !== "admin" || this.role !== "user") {
-            alert("Не корректно введена роль! Проверьте ввод роли");
-            return;
-        }
         this.name = name;
         this.role = role;
         this.loggedIn = false;
+        if (this.role !== "admin" && this.role !== "user") {
+            alert("Не корректно введена роль! Проверьте ввод роли");
+            return;
+        }
+
     }
 
     getName() {
@@ -51,11 +53,15 @@ class Admin extends User {
         this.name = name;
         this.role = role;
         admins.push(name);
+        alert(`Админ: ${name} добавлен`);
+
     }
 
     removeUser(name) {
         this.name = name;
         users.remove(name);
+        alert(`Юзер: ${name} удален`);
+
     }
 
     changeUserRole(newRole) {
@@ -67,13 +73,36 @@ class Admin extends User {
         }
     }
 
-    getAllUSers(){
+    getAllUSers() {
         console.log(users);
     }
 
-    removeAllUsers(){
+    removeAllUsers() {
         users = [];
+        alert("Список юзеров очищен");
     }
 }
 
-let form = new Class();
+loginButton.addEventListener("click", function () {
+
+
+    let accNameValue = accountName.value;
+    let roleValue = role.value;
+
+    console.log(accNameValue);
+    console.log(roleValue);
+
+
+    let form = new User(accNameValue, roleValue);
+
+    function checRole() {
+        if (role.value == "admin" && admins.includes(accountName.value)) {
+            alert(`Добро пожаловать, дорогой Админ!`);
+        } else if (role.value == "user" && users.includes(accountName.value)) {
+            alert(`Здраствуйте ${accountName.value}!`);
+        } else {
+            alert("")
+        }
+    }
+    checRole();
+});
